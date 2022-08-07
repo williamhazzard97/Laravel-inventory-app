@@ -35,4 +35,14 @@ Route::post('saveData', [itemController::class, 'insertItem']);
 //Show Register/Create Form
 Route::get('/register', [userController::class, 'create']);
 
+//Create new user
 Route::post('/users', [userController::class, 'store']);
+
+//Logout user
+Route::post('/logout', [userController::class, 'logout']);
+
+//Show login form
+Route::get('/login', [userController::class, 'login']);
+
+//Login authentication
+Route::post('/authenticate', [userController::class, 'authenticate']);

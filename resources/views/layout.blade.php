@@ -10,8 +10,18 @@
 </head>
 <body>
 <a class="homeButton" href="/">Home</a>
-<a class="registerButton" href="/register">Home</a>
-<a class="loginButton" href="/login">Home</a>
+@auth
+<span class="font-bold uppercase">Welcome {{auth()->user()->name}}</span>
+<form class="inline" method="POST" action="/authenticate">
+          @csrf
+          <button type="submit">
+            Logout
+          </button>
+</form>
+@else
+<a class="registerButton" href="/register">Register</a>
+<a class="loginButton" href="/login">Login</a>
+@endauth
     <h1>Laravel Inventory System</h1>
     <br>
       
