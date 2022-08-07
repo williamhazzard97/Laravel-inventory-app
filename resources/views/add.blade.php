@@ -5,11 +5,11 @@
 
 <form name="addItemForm" action="{{url('saveData')}}" method="post" id="addItemForm" action="home.blade.php" enctype="multipart/form-data">
     <input type = "hidden" name = "_token" value = "<?php echo csrf_token(); ?>"><input type = "hidden" name = "_token" value = "<?php echo csrf_token(); ?>">
-        <label for="name">Item Name:</label>
-        <input type="text" placeholder="Item name..." name="name">
+        <label for="item_name">Item Name:</label>
+        <input type="text" placeholder="Item name..." name="item_name">
 
         <label for="decription">Item Description:</label>
-        <input type="text" placeholder="Item description..." name="decription">
+        <input type="text" placeholder="Item description..." name="description">
 
         <label for="quantity">Stock Quantity:</label>
         <input type="text" placeholder="Stock quantity..." name="quantity">

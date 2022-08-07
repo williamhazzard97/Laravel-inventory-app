@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\Item;
+use App\Http\Controllers\itemController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +17,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home', [
+        'items' => Item::all()
+    ]);
 });
+
+Route::get('add', function() {
+    return view('add');
+});
+
+Route::post('saveData', [itemController::class, 'insertItem']);

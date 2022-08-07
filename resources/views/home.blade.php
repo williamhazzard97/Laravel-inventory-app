@@ -36,8 +36,7 @@
         {{$item['category']}}
     </td>
     <td>
-        <a href="{{url('edit/'.$my_reminder->id)}}"><button class="btn btn-primary ">Edit</button> </a>
-        <a href="delete/{{$my_reminder->id}}"><button class="btn btn-primary ">Delete</button> </a>
+        
     </td>
 </tr>
 @endforeach
