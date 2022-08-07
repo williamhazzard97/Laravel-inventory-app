@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Models\Item;
 use App\Http\Controllers\itemController;
+use App\Http\Controllers\userController;
 
 
 /*
@@ -16,14 +17,22 @@ use App\Http\Controllers\itemController;
 |
 */
 
+//Load home page
 Route::get('/', function () {
     return view('home', [
         'items' => Item::all()
     ]);
 });
 
+//Load add item form
 Route::get('add', function() {
     return view('add');
 });
 
+//Insert data to database table
 Route::post('saveData', [itemController::class, 'insertItem']);
+
+//Show Register/Create Form
+Route::get('/register', [userController::class, 'create']);
+
+Route::post('/users', [userController::class, 'store']);

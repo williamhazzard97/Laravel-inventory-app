@@ -10,6 +10,8 @@
 </head>
 <body>
 <a class="homeButton" href="/">Home</a>
+<a class="registerButton" href="/register">Home</a>
+<a class="loginButton" href="/login">Home</a>
     <h1>Laravel Inventory System</h1>
     <br>
       
