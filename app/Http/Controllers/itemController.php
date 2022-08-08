@@ -52,4 +52,13 @@ class itemController extends Controller
 
         return redirect('/')->with('status', "Data updated successfully");
     }
+
+    public function search(Request $request) {
+        $search = $request->input('query');
+        $items = Item::where ('item_name', 'LIKE', '%' .$search . '%')->get();
+
+        return view('search', compact('items'));
+    }
+
+    
 }

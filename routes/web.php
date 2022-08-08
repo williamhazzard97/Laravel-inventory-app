@@ -31,10 +31,10 @@ Route::get('add', [itemController::class, 'addForm'])->middleware('auth');
 Route::post('saveData', [itemController::class, 'insertItem']);
 
 //Delete item
-Route::get('delete/{id}', [itemController::class, 'delete']);
+Route::get('delete/{id}', [itemController::class, 'delete'])->middleware('auth');
 
 //Edit item
-Route::get('edit/{id}', [itemController::class, 'edit']);
+Route::get('edit/{id}', [itemController::class, 'edit'])->middleware('auth');
 Route::put('update/{id}', [itemController::class, 'update']);
 
 //Show Register/Create Form
@@ -44,7 +44,7 @@ Route::get('/register', [userController::class, 'create']);
 Route::post('/users', [userController::class, 'store']);
 
 //Logout user
-Route::post('/logout', [userController::class, 'logout']);
+Route::post('/logout', [userController::class, 'logout'])->middleware('auth');
 
 //Show login form
 Route::get('/login', [userController::class, 'login'])->name('login');
@@ -52,3 +52,6 @@ Route::get('/login', [userController::class, 'login'])->name('login');
 //Login authentication
 Route::post('/authenticate', [userController::class, 'authenticate']);
 
+
+//Search 
+Route::get('/search', [itemController::class, 'search']);

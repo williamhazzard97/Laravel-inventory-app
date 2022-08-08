@@ -18,7 +18,7 @@
 <a class="homeButton" href="/">Home</a>
 @auth
 <span class="font-bold uppercase">Welcome {{auth()->user()->name}}</span>
-<form class="inline" method="POST" action="/authenticate">
+<form class="inline" method="POST" action="/logout">
           @csrf
           <button type="submit">
             Logout

@@ -3,6 +3,7 @@
 
 @section('content')
 <div class="col-12 d-flex justify-content-end">
+<a href="/"><button href="/" class="btn btn-primary btn-block mt-4">Show All Items</button></a>
 <a href="add"><button href="add" class="btn btn-primary btn-block mt-4">Add New Item</button></a>
 <form class="form-inline my-2 my-lg-0" type="get" action="{{ url('/search') }}">
     <input class="form-control me-2" type="search" placeholder="Search items" name="query" aria-label="Search">
