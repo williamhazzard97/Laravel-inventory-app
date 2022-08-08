@@ -35,10 +35,10 @@ Route::get('delete/{id}', [itemController::class, 'delete'])->middleware('auth')
 
 //Edit item
 Route::get('edit/{id}', [itemController::class, 'edit'])->middleware('auth');
-Route::put('update/{id}', [itemController::class, 'update']);
+Route::put('update/{id}', [itemController::class, 'update'])->middleware('auth');
 
 //Show Register/Create Form
-Route::get('/register', [userController::class, 'create']);
+Route::get('/register', [userController::class, 'create'])->middleware('guest');
 
 //Create new user
 Route::post('/users', [userController::class, 'store']);
@@ -47,7 +47,7 @@ Route::post('/users', [userController::class, 'store']);
 Route::post('/logout', [userController::class, 'logout'])->middleware('auth');
 
 //Show login form
-Route::get('/login', [userController::class, 'login'])->name('login');
+Route::get('/login', [userController::class, 'login'])->name('login')->middleware('guest');
 
 //Login authentication
 Route::post('/authenticate', [userController::class, 'authenticate']);
