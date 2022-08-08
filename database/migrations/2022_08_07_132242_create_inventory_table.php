@@ -15,10 +15,12 @@ return new class extends Migration
     {
         Schema::create('items', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained();
             $table->string('item_name');
             $table->longText('description');
             $table->integer('quantity');
             $table->string('category');
+            $table->decimal('price');
             $table->timestamps();
         });
     }

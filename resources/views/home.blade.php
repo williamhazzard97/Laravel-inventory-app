@@ -3,8 +3,13 @@
 
 @section('content')
 <div class="col-12 d-flex justify-content-end">
-<a href="add"><button class="btn btn-primary btn-block mt-4">Add New Item</button></a>
+<a href="add"><button href="add" class="btn btn-primary btn-block mt-4">Add New Item</button></a>
+<form method="POST" action="/" novalidate>
+          <input class="form-control me-2" type="search" placeholder="Search items" name="search" aria-label="Search">
+          <button class="btn btn-primary btn-block mt-4" type="submit">Search</button>
+</form>
 </div>
+
 
 <table class="table">
     <thead class="thead-dark">
@@ -14,6 +19,7 @@
             <th scope="col">Description</th>
             <th scope="col">Quantity</th>
             <th scope="col">Category</th>
+            <th scope="col">Price</th>
             <th scope="col">Actions</th>
         </tr>
     </thead>
@@ -36,7 +42,13 @@
         {{$item['category']}}
     </td>
     <td>
-        
+        {{$item['price']}}
+    </td>
+    <td>
+    <td>
+        <a href="{{url('edit/'.$item->id)}}"><button>Edit</button> </a>
+        <a href="delete/{{$item->id}}"><button>Delete</button> </a>
+    </td>
     </td>
 </tr>
 @endforeach

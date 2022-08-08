@@ -25,12 +25,17 @@ Route::get('/', function () {
 });
 
 //Load add item form
-Route::get('add', function() {
-    return view('add');
-});
+Route::get('add', [itemController::class, 'addForm'])->middleware('auth');
 
-//Insert data to database table
+//Insert item to database table
 Route::post('saveData', [itemController::class, 'insertItem']);
+
+//Delete item
+Route::get('delete/{id}', [itemController::class, 'delete']);
+
+//Edit item
+Route::get('edit/{id}', [itemController::class, 'edit']);
+Route::put('update/{id}', [itemController::class, 'update']);
 
 //Show Register/Create Form
 Route::get('/register', [userController::class, 'create']);
@@ -42,7 +47,8 @@ Route::post('/users', [userController::class, 'store']);
 Route::post('/logout', [userController::class, 'logout']);
 
 //Show login form
-Route::get('/login', [userController::class, 'login']);
+Route::get('/login', [userController::class, 'login'])->name('login');
 
 //Login authentication
 Route::post('/authenticate', [userController::class, 'authenticate']);
+

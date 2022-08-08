@@ -21,6 +21,9 @@
             <option value="Electronics">Electronics</option>
             <option value="DIY Hardware">DIY Hardware</option>
         </select>
+
+        <label for="price">Price (£):</label>
+        <input type="text" placeholder="Price..." name="price">
         <button type="submit" value="Add Item" class="btn btn-primary">Save New Item</button>
     </form>
 

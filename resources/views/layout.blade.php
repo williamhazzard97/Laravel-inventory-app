@@ -6,6 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 
+      <!-- Scripts -->
+      <script src="{{ asset('js/app.js') }}" defer></script>
+   
+   <!-- Styles -->
+   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
     <title>Inventory Management System</title>
 </head>
 <body>
@@ -21,6 +27,7 @@
 @else
 <a class="registerButton" href="/register">Register</a>
 <a class="loginButton" href="/login">Login</a>
+
 @endauth
     <h1>Laravel Inventory System</h1>
     <br>
