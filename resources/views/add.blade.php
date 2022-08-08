@@ -16,7 +16,7 @@
 
         <label for="category">Category:</label>
         <select name="category">
-            <option value="Low">Household</option>
+            <option value="Household">Household</option>
             <option value="Gardening">Gardening</option>
             <option value="Electronics">Electronics</option>
             <option value="DIY Hardware">DIY Hardware</option>
