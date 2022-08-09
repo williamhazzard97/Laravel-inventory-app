@@ -3,7 +3,7 @@
 @section('content')
 <h2>Add Stock Items</h2>
 
-<form class="form" name="addItemForm" action="{{url('saveData')}}" method="post" id="addItemForm" action="home.blade.php" enctype="multipart/form-data">
+<form class="form form-control-lg" name="addItemForm" action="{{url('saveData')}}" method="post" id="addItemForm" action="home.blade.php" enctype="multipart/form-data">
     <input type = "hidden" name = "_token" value = "<?php echo csrf_token(); ?>"><input type = "hidden" name = "_token" value = "<?php echo csrf_token(); ?>">
         <label for="item_name">Item Name:</label>
         <input type="text" placeholder="Item name..." name="item_name">

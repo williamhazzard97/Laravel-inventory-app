@@ -6,6 +6,7 @@ use App\Models\Item;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Storage;
 
 class itemController extends Controller
 {
@@ -31,9 +32,12 @@ class itemController extends Controller
         $data->user_id = $current_user_id;
         
         //Upload file with preset file path
-        $fileName = time().'_'.$request->file->getClientOriginalName();
-        $filePath = $request->file('file')->storeAs('uploads', $fileName, 'public');
-        $data->file_path = '/storage/' . $filePath;
+        //$fileName = time().'_'.$request->file->getClientOriginalName();
+        //$filePath = $request->file('file')->storeAs('uploads', $fileName, 'public');
+        //$data->file_path = '/storage/' . $filePath;
+
+
+        Storage::disk('public')->put('testFile2.txt', 'Contents');
 
         $data->save();
 
@@ -93,11 +97,20 @@ class itemController extends Controller
     /**
      * Find the specific item record using id, assign file name to variable, parse variable into download arguments along with data type
      */
-    public function fileDownload($id){
-        $file = Item::find($id);
+    public function fileDownload(Request $request){
 
-        $attachment = $file->file_path;
-        return Response::download($attachment);
-}
-    
+        return response()->download(public_path('\testFile2.txt'));
+        
+    }
+
+    /**
+     * Assign variable with inputted 'sort' category on form, 
+     * get items from the database table that match category term, return view of category group
+     */
+    public function sortCategory(Request $request) {
+        $categorySort = $request->input('categorySort');
+        $items = Item::where ('category', 'LIKE', '%' .$categorySort . '%')->get();
+        return view('categorySorted', compact('items'));
+    }
+
 }

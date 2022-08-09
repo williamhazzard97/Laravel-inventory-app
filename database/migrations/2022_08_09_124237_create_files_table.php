@@ -13,15 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('items', function (Blueprint $table) {
+        Schema::create('files', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
-            $table->string('item_name');
-            $table->longText('description');
-            $table->integer('quantity');
-            $table->string('category');
-            $table->decimal('price');
-            $table->string('file_path')->nullable();
             $table->timestamps();
         });
     }
@@ -33,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('items');
+        Schema::dropIfExists('files');
     }
 };

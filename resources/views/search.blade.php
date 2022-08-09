@@ -11,7 +11,6 @@
 </form>
 </div>
 
-
 <table class="table">
     <thead class="thead-dark">
         <tr>
@@ -46,10 +45,13 @@
         {{$item['price']}}
     </td>
     <td>
+        {{$item['file']}}
+    </td>
     <td>
+    
         <a href="{{url('edit/'.$item->id)}}"><button>Edit</button> </a>
         <a href="delete/{{$item->id}}"><button>Delete</button> </a>
-    </td>
+    
     </td>
 </tr>
 @endforeach

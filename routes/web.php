@@ -61,4 +61,7 @@ Route::get('/upload-file', [itemController::class, 'createForm']);
 Route::post('/upload-file', [itemController::class, 'fileUpload'])->name('fileUpload');
 
 //File Download
-Route::get('download/{id}', [itemController::class, 'fileDownload']);
+Route::get('download', [itemController::class, 'fileDownload']);
+
+//Sort by Category
+Route::get('/sortCategory', [itemController::class, 'sortCategory']);
