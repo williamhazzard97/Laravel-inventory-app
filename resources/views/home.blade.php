@@ -11,7 +11,7 @@
 </div>
 
 
-<table class="table">
+<table class="table table-bordered table-hover table-responsive">
     <thead class="thead-dark">
         <tr>
             <th scope="col">Item ID</th>
@@ -20,6 +20,7 @@
             <th scope="col">Quantity</th>
             <th scope="col">Category</th>
             <th scope="col">Price</th>
+            <th scope="col">File</th>
             <th scope="col">Actions</th>
         </tr>
     </thead>
@@ -45,11 +46,14 @@
         {{$item['price']}}
     </td>
     <td>
+        {{$item['file_path']}}
+    </td>
+    
     <td>
-        <a href="{{url('edit/'.$item->id)}}"><button>Edit</button> </a>
-        <a href="delete/{{$item->id}}"><button>Delete</button> </a>
+        <a href="{{url('edit/'.$item->id)}}"><button class="btn btn-primary btn-block mt-4">Edit</button> </a>
+        <a href="delete/{{$item->id}}"><button class="btn btn-primary btn-block mt-4">Delete</button> </a>
     </td>
-    </td>
+    
 </tr>
 @endforeach
 

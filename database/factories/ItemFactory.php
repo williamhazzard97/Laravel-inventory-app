@@ -25,4 +25,5 @@ class ItemFactory extends Factory
             'price' => $this->faker->numberBetween(1.99, 99.99),
         ];
     }
+    
 }

@@ -24,7 +24,13 @@
 
         <label for="price">Price (£):</label>
         <input type="text" placeholder="Price..." name="price">
+
+        <label  for="chooseFile">Select file</label>
+        <input type="file" name="file" id="chooseFile">
+
         <button type="submit" value="Add Item" class="btn btn-primary">Save New Item</button>
+
+
     </form>
 
 

@@ -24,5 +24,6 @@ class DatabaseSeeder extends Seeder
         Item::factory(6)->create([
             'user_id' => $user->id
         ]);
+        
     }
 }
