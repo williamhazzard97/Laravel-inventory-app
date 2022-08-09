@@ -46,7 +46,7 @@
         {{$item['price']}}
     </td>
     <td>
-        {{$item['file_path']}}
+    <a href="download/{{$item->id}}" class="btn btn-primary">{{$item['file_path']}}</a>
     </td>
     
     <td>

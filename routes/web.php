@@ -59,3 +59,6 @@ Route::get('/search', [itemController::class, 'search']);
 //File Upload
 Route::get('/upload-file', [itemController::class, 'createForm']);
 Route::post('/upload-file', [itemController::class, 'fileUpload'])->name('fileUpload');
+
+//File Download
+Route::get('download/{id}', [itemController::class, 'fileDownload']);

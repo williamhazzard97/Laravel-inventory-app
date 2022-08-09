@@ -15,20 +15,26 @@
     <title>Inventory Management System</title>
 </head>
 <body>
-<a class="homeButton" href="/">Home</a>
-@auth
-<span class="font-bold uppercase">Welcome {{auth()->user()->name}}</span>
-<form class="inline" method="POST" action="/logout">
-          @csrf
-          <button type="submit">
-            Logout
-          </button>
-</form>
-@else
-<a class="registerButton" href="/register">Register</a>
-<a class="loginButton" href="/login">Login</a>
+  <nav class="nav">
+      <a class="homeButton" href="/"><button>Home</button></a>
+      @auth
+      <form class="inline" method="POST" action="/logout">
+                @csrf
+                <button type="submit">
+                  Logout
+                </button>
+      </form>
+      <div>
+        <span class="font-bold uppercase">Welcome {{auth()->user()->name}}</span>
+      </div>
+      
+      @else
+      <a class="registerButton" href="/register"><button>Register</button></a>
+      <a class="loginButton" href="/login"><button>Login</button></a>
 
-@endauth
+      @endauth
+  </nav>
+
     <h1>Laravel Inventory System</h1>
     <br>
       

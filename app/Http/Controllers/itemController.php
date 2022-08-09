@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Item;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
 
 class itemController extends Controller
 {
@@ -88,5 +89,15 @@ class itemController extends Controller
         //Display the search results and use compact() helper to create array of items string args
         return view('search', compact('items'));
     }
+
+    /**
+     * Find the specific item record using id, assign file name to variable, parse variable into download arguments along with data type
+     */
+    public function fileDownload($id){
+        $file = Item::find($id);
+
+        $attachment = $file->file_path;
+        return Response::download($attachment);
+}
     
 }
