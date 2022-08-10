@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Storage;
+use Log;
 
 class itemController extends Controller
 {
@@ -98,8 +99,14 @@ class itemController extends Controller
      * Find the specific item record using id, assign file name to variable, parse variable into download arguments along with data type
      */
     public function fileDownload(Request $request){
-
-        return response()->download(public_path('\testFile2.txt'));
+        if(Storage::disk('public')->exists("$request->file")) {
+            $path = Storage::disk('public')->path("$request->file");
+            $content = file_get_contents($path);
+            return response($content)->withHeaders([
+                'Content-Type' => mime_content_type($path)
+            ]);
+            return redirect('/404');
+        }
         
     }
 
@@ -108,9 +115,23 @@ class itemController extends Controller
      * get items from the database table that match category term, return view of category group
      */
     public function sortCategory(Request $request) {
-        $categorySort = $request->input('categorySort');
-        $items = Item::where ('category', 'LIKE', '%' .$categorySort . '%')->get();
+        Log::Info('Line 177');
+        $categoryValue = $request->input('sortCategory');
+        $items = Item::where ('category', 'LIKE', '%' .$categoryValue . '%')->get();
         return view('categorySorted', compact('items'));
+    }
+
+    public function sortStock(Request $request) {
+        $orderDirection = $request->input('sortStock');
+        if ($orderDirection == "Highest") {
+            $items = Item::orderBy('quantity', 'DESC')->get();
+            return view('stockSorted', compact('items'));
+       }
+       else {
+            $items = Item::orderBy('quantity')->get();
+            return view('stockSorted', compact('items'));
+       }
+       
     }
 
 }

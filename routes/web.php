@@ -65,3 +65,6 @@ Route::get('download', [itemController::class, 'fileDownload']);
 
 //Sort by Category
 Route::get('/sortCategory', [itemController::class, 'sortCategory']);
+
+//Stock levels
+Route::get('/sortStock', [itemController::class, 'sortStock']);

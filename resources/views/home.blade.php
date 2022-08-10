@@ -17,6 +17,13 @@
     </select>
     <button class="btn btn-primary" type="submit">Sort by category</button>
 </form>
+<form class="form-inline my-2 my-lg-0" type="get" action="{{ url('/sortStock') }}">
+    <select name="sortStock" id="sortStock">
+            <option value="Lowest">Low -> High</option>
+            <option value="Highest">High -> Low</option>
+    </select>
+    <button class="btn btn-primary" type="submit">Sort by stock</button>
+</form>
 </div>
 
 
