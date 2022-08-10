@@ -67,7 +67,8 @@ class itemController extends Controller
     }
 
     /**
-     * Find the correct item record using primary key and find(id) helper, replace data with the appropriate field data from edit form
+     * Find the correct item record using primary key and find(id) helper,
+     * replace data with the appropriate field data from edit form
      */
     public function update(Request $request, $id) {
         $item = Item::find($id);
@@ -85,7 +86,8 @@ class itemController extends Controller
     }
 
     /**
-     * Grab the query entered by the user in the search bar and query the database items table for a term LIKE the search query 
+     * Grab the query entered by the user in the search bar 
+     * and query the database items table for a term LIKE the search query 
      */
     public function search(Request $request) {
         $search = $request->input('query');
@@ -96,7 +98,9 @@ class itemController extends Controller
     }
 
     /**
-     * Find the specific item record using id, assign file name to variable, parse variable into download arguments along with data type
+     * Find the specific item record using id, 
+     * assign file name to variable, 
+     * parse variable into download arguments along with data type
      */
     public function fileDownload(Request $request){
         if(Storage::disk('public')->exists("$request->file")) {
@@ -112,7 +116,8 @@ class itemController extends Controller
 
     /**
      * Assign variable with inputted value of 'sortCategory', 
-     * get items from the database table that match category term, return view of category group
+     * get items from the database table that match category term, 
+     * return view of category group
      */
     public function sortCategory(Request $request) {
         $categoryValue = $request->input('sortCategory');
@@ -122,7 +127,7 @@ class itemController extends Controller
 
     /**
      * Assign variable with inputted value of 'sortStock', 
-     * get items from the database table in descending or ascending order based on user input
+     * get items from the database table in desc or asc order based on user input
      */
     public function sortStock(Request $request) {
         $orderDirection = $request->input('sortStock');
@@ -137,6 +142,10 @@ class itemController extends Controller
        
     }
 
+    /**
+     * Generate items based on quantity level, 
+     * display items with less than 3 units in stock
+     */
     public function lowStock() {
         $items = Item::where('quantity', '<', '3')->get();
         return view('home', compact('items'));

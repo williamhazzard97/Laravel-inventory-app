@@ -73,8 +73,7 @@ Route::get('/sortStock', [itemController::class, 'sortStock']);
 Route::get('/lowStock', [itemController::class, 'lowStock']);
 
 //Email Verification
-Auth::routes(['verify' => true]);
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
