@@ -66,5 +66,15 @@ Route::get('download', [itemController::class, 'fileDownload']);
 //Sort by Category
 Route::get('/sortCategory', [itemController::class, 'sortCategory']);
 
-//Stock levels
+//Sort by stock levels
 Route::get('/sortStock', [itemController::class, 'sortStock']);
+
+//View low stock items
+Route::get('/lowStock', [itemController::class, 'lowStock']);
+
+//Email Verification
+Auth::routes(['verify' => true]);
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

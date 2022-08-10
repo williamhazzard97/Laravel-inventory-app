@@ -24,6 +24,9 @@
     </select>
     <button class="btn btn-primary" type="submit">Sort by stock</button>
 </form>
+<form class="form-inline my-2 my-lg-0" type="get" action="{{ url('/lowStock') }}">
+    <button class="btn btn-primary" type="submit">View Low Stock Items</button>
+</form>
 </div>
 
 

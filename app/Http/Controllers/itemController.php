@@ -101,26 +101,29 @@ class itemController extends Controller
     public function fileDownload(Request $request){
         if(Storage::disk('public')->exists("$request->file")) {
             $path = Storage::disk('public')->path("$request->file");
-            $content = file_get_contents($path);
-            return response($content)->withHeaders([
-                'Content-Type' => mime_content_type($path)
-            ]);
+            $content = Storage::disk('public')->get('testFile2.txt');
+            return Storage::Response($content);
+        }
+        else {
             return redirect('/404');
         }
         
     }
 
     /**
-     * Assign variable with inputted 'sort' category on form, 
+     * Assign variable with inputted value of 'sortCategory', 
      * get items from the database table that match category term, return view of category group
      */
     public function sortCategory(Request $request) {
-        Log::Info('Line 177');
         $categoryValue = $request->input('sortCategory');
         $items = Item::where ('category', 'LIKE', '%' .$categoryValue . '%')->get();
         return view('categorySorted', compact('items'));
     }
 
+    /**
+     * Assign variable with inputted value of 'sortStock', 
+     * get items from the database table in descending or ascending order based on user input
+     */
     public function sortStock(Request $request) {
         $orderDirection = $request->input('sortStock');
         if ($orderDirection == "Highest") {
@@ -132,6 +135,11 @@ class itemController extends Controller
             return view('stockSorted', compact('items'));
        }
        
+    }
+
+    public function lowStock() {
+        $items = Item::where('quantity', '<', '3')->get();
+        return view('home', compact('items'));
     }
 
 }
