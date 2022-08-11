@@ -27,6 +27,10 @@
 <form class="form-inline my-2 my-lg-0" type="get" action="{{ url('/lowStock') }}">
     <button class="btn btn-primary" type="submit">View Low Stock Items</button>
 </form>
+<form class="form-inline my-2 my-lg-0" type="get" action="{{ url('/sendEmail') }}">
+    
+    <button class="btn btn-primary" type="submit">Send Email</button>
+</form>
 </div>
 
 
@@ -72,6 +76,8 @@
         <a href="{{url('edit/'.$item->id)}}"><button class="btn btn-primary btn-block mt-4">Edit</button> </a>
         <a href="delete/{{$item->id}}"><button class="btn btn-primary btn-block mt-4">Delete</button> </a>
     </td>
+
+   
     
 </tr>
 @endforeach

@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\Item;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\signUp;
 use Log;
+
 
 class itemController extends Controller
 {
@@ -151,4 +155,23 @@ class itemController extends Controller
         return view('home', compact('items'));
     }
 
+    /**
+     * Add stock
+     */
+    public function addStock(Request $request, $id) {
+        $quantity = 1;
+        $items = Item::find($id);
+        $items->quantity += $quantity;
+        $items->save();
+        Log::info('Line 165');
+        return view('home');
+    }
+
+    /**
+     * Send email 
+     */
+    public function sendEmail() {
+        Mail::to('fake@email.com')->send(new signUp());
+        return view('/');
+    }
 }

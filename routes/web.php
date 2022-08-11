@@ -72,7 +72,11 @@ Route::get('/sortStock', [itemController::class, 'sortStock']);
 //View low stock items
 Route::get('/lowStock', [itemController::class, 'lowStock']);
 
-//Email Verification
+//Add stock by 1
+Route::get('/addStock/{id}', [itemController::class, 'addStock']);
+
+//Send Email
+Route::get('/sendEmail', [itemController::class, 'sendEmail']);
 
 Auth::routes(['verify' => true]);
 
