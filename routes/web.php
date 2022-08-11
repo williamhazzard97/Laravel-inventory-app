@@ -52,7 +52,6 @@ Route::get('/login', [userController::class, 'login'])->name('login')->middlewar
 //Login authentication
 Route::post('/authenticate', [userController::class, 'authenticate']);
 
-
 //Search 
 Route::get('/search', [itemController::class, 'search']);
 

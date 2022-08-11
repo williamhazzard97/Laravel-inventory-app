@@ -159,12 +159,11 @@ class itemController extends Controller
      * Add stock
      */
     public function addStock(Request $request, $id) {
-        $quantity = 1;
+        $addition = 1;
         $items = Item::find($id);
-        $items->quantity += $quantity;
+        $items->quantity += $addition;
         $items->save();
-        Log::info('Line 165');
-        return view('home');
+        return view('home', ['items' => Item::all()]);
     }
 
     /**
@@ -172,6 +171,6 @@ class itemController extends Controller
      */
     public function sendEmail() {
         Mail::to('fake@email.com')->send(new signUp());
-        return view('/');
+        return view('home', ['items' => Item::all()]);
     }
 }

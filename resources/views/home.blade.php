@@ -31,6 +31,7 @@
     
     <button class="btn btn-primary" type="submit">Send Email</button>
 </form>
+
 </div>
 
 
@@ -61,6 +62,9 @@
     </td>
     <td>
         {{$item['quantity']}}
+        <br>
+        <a href="/addStock/{{$item->id}}"><button class="btn btn-primary btn-block mt-4">+</button> </a>
+        <a href="/subStock/{{$item->id}}"><button class="btn btn-primary btn-block mt-4">-</button> </a>
     </td>
     <td>
         {{$item['category']}}
@@ -76,6 +80,7 @@
         <a href="{{url('edit/'.$item->id)}}"><button class="btn btn-primary btn-block mt-4">Edit</button> </a>
         <a href="delete/{{$item->id}}"><button class="btn btn-primary btn-block mt-4">Delete</button> </a>
     </td>
+
 
    
     
