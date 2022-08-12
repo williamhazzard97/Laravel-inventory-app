@@ -5,12 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 
-      <!-- Scripts -->
-      <script src="{{ asset('js/app.js') }}" defer></script>
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
    
-   <!-- Styles -->
-   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <!-- Styles -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     <title>Inventory Management System</title>
 </head>

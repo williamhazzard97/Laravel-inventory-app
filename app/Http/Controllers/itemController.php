@@ -181,10 +181,9 @@ class itemController extends Controller
             return view('home', ['items' => Item::all()]);
         }
         else {
-            return view('home', ['items' => Item::all()])->with('warning','Item out of stock!');
+            //If quantity is 0 then display flash message 
+            return back()->with('error','Item out of stock!');
         }
-
-        
     }
 
     /**

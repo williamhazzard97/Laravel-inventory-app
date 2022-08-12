@@ -2,8 +2,10 @@
 @extends('layout')
 
 @section('content')
-<div class="col-12 d-flex justify-content-end">
-<a href="add"><button href="add" class="btn btn-primary btn-block mt-4">Add New Item</button></a>
+<div class="col-12 d-flex justify-content-around">
+<form class="form-inline my-2 my-lg-0" type="get" action="{{ url('/add') }}">
+    <button class="btn btn-primary" type="submit">Add New Item</button>
+</form>
 <form class="form-inline my-2 my-lg-0" type="get" action="{{ url('/search') }}">
     <input class="form-control me-2" type="search" placeholder="Search items" name="query" aria-label="Search">
     <button class="btn btn-primary" type="submit">Search</button>

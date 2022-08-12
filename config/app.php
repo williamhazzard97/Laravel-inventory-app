@@ -200,6 +200,11 @@ return [
          */
         'Barryvdh\Debugbar\ServiceProvider',
 
+        /**
+         * Spatie Permissions
+         */
+        Spatie\Permission\PermissionServiceProvider::class,
+
     ],
 
     /*
