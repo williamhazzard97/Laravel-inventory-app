@@ -60,7 +60,7 @@ Route::get('/upload-file', [itemController::class, 'createForm']);
 Route::post('/upload-file', [itemController::class, 'fileUpload'])->name('fileUpload');
 
 //File Download
-Route::get('download', [itemController::class, 'fileDownload']);
+Route::get('/download/{id}', [itemController::class, 'fileDownload']);
 
 //Sort by Category
 Route::get('/sortCategory', [itemController::class, 'sortCategory']);
@@ -72,7 +72,10 @@ Route::get('/sortStock', [itemController::class, 'sortStock']);
 Route::get('/lowStock', [itemController::class, 'lowStock']);
 
 //Add stock by 1
-Route::get('/addStock/{id}', [itemController::class, 'addStock']);
+Route::get('/addStock/{id}', [itemController::class, 'addStock'])->middleware('auth');
+
+//Subtract stock by 1
+Route::get('/subStock/{id}', [itemController::class, 'subStock'])->middleware('auth');
 
 //Send Email
 Route::get('/sendEmail', [itemController::class, 'sendEmail']);

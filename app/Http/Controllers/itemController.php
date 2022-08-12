@@ -36,10 +36,10 @@ class itemController extends Controller
         $current_user_id = auth()->user()->id;
         $data->user_id = $current_user_id;
         
-        //Upload file with preset file path
-        //$fileName = time().'_'.$request->file->getClientOriginalName();
-        //$filePath = $request->file('file')->storeAs('uploads', $fileName, 'public');
-        //$data->file_path = '/storage/' . $filePath;
+        //Upload file with preset file path and specify the storage disk to be used
+        $fileName = time().'_'.$request->file->getClientOriginalName();
+        $filePath = $request->file('file')->storeAs('item_files', $fileName, 'public');
+        $data->file_path = '/' . $filePath;
 
 
         Storage::disk('public')->put('testFile2.txt', 'Contents');
@@ -106,16 +106,19 @@ class itemController extends Controller
      * assign file name to variable, 
      * parse variable into download arguments along with data type
      */
-    public function fileDownload(Request $request){
-        if(Storage::disk('public')->exists("$request->file")) {
-            $path = Storage::disk('public')->path("$request->file");
-            $content = Storage::disk('public')->get('testFile2.txt');
-            return Storage::Response($content);
+    public function fileDownload(Request $request, $id){
+        $item = Item::find($id);
+        if(Storage::disk('public')->exists($item->file_path)) {
+            $path = Storage::disk('public')->path($item->file_path);
+            return Response::download($path);
+
+            //Two lines below are to download from the apps public folder, not storage public disk
+            //$filepath = public_path('uploads/testFile.txt');
+            //return Response::download($filepath); 
         }
         else {
             return redirect('/404');
-        }
-        
+        } 
     }
 
     /**
@@ -156,7 +159,7 @@ class itemController extends Controller
     }
 
     /**
-     * Add stock
+     * Add stock quantity
      */
     public function addStock(Request $request, $id) {
         $addition = 1;
@@ -164,6 +167,24 @@ class itemController extends Controller
         $items->quantity += $addition;
         $items->save();
         return view('home', ['items' => Item::all()]);
+    }
+
+    /**
+     * Subtract stock quantity
+     */
+    public function subStock(Request $request, $id) {
+        $subtraction = 1;
+        $items = Item::find($id);
+        if ($items->quantity >= 1) {
+            $items->quantity -= $subtraction;
+            $items->save();
+            return view('home', ['items' => Item::all()]);
+        }
+        else {
+            return view('home', ['items' => Item::all()])->with('warning','Item out of stock!');
+        }
+
+        
     }
 
     /**

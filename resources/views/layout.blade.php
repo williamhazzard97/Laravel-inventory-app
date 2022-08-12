@@ -37,8 +37,8 @@
 
     <h1>Laravel Inventory System</h1>
     <br>
-      
     {{--VIEW OUTPUT--}}
     @yield('content')
+    @include('flashMessage')
 </body>
 </html>
