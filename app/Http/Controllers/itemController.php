@@ -9,9 +9,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\signUp;
 use Log;
-
+use App\Mail\signUp;
 
 class itemController extends Controller
 {

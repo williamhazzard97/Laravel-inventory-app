@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Validation\Rule;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class userController extends Controller
 {
@@ -25,6 +27,9 @@ class userController extends Controller
         $formFields['password'] = bcrypt($formFields['password']);
 
         $user = User::create($formFields);
+
+        //Assign role of User to newly created $user
+        $user->assignRole('User');
 
         //Login
         auth()->login($user);
@@ -60,4 +65,9 @@ class userController extends Controller
 
         return back()->withErrors(['email' => 'Invalid credentials'])->onlyInput('email');
     }
+
+    public function assignUserRole() {
+
+    }
+
 }
