@@ -29,8 +29,13 @@ class HomeController extends Controller
     public function index()
     {
         //Create admin role and assign to admin user
-        $role = Role::create(['name' => 'writer']);
-        $permission = Permission::create(['name' => 'edit articles']);
+        
+        $user = User::find('2');
+
+        $user->assignRole('Admin');
+        $role = Role::findByName('Admin');
+
+        $role->givePermissionTo('edit-users');
 
 
         return view('home', ['items' => Item::all()]);

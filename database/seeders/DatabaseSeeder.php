@@ -18,8 +18,9 @@ class DatabaseSeeder extends Seeder
     {
         //Seed an example user
         $user = User::factory()->create([
-            'name' => 'John Doe',
-            'email' => 'john@gmail.com',
+            'name' => 'William',
+            'email' => 'williamhazzard67@gmail.com',
+            
         ]);
 
         //Seed 6 items that are owned by this user

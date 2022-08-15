@@ -40,7 +40,6 @@ class itemController extends Controller
         $filePath = $request->file('file')->storeAs('item_files', $fileName, 'public');
         $data->file_path = '/' . $filePath;
 
-
         Storage::disk('public')->put('testFile2.txt', 'Contents');
 
         $data->save();

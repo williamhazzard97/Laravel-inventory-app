@@ -23,13 +23,14 @@ class userController extends Controller
             'password' => 'required | confirmed | min:6'
         ]);
 
+        event(new Registered($user));
+
         //Hash password
         $formFields['password'] = bcrypt($formFields['password']);
 
         $user = User::create($formFields);
 
-        //Assign role of User to newly created $user
-        $user->assignRole('User');
+       
 
         //Login
         auth()->login($user);
@@ -65,9 +66,4 @@ class userController extends Controller
 
         return back()->withErrors(['email' => 'Invalid credentials'])->onlyInput('email');
     }
-
-    public function assignUserRole() {
-
-    }
-
 }

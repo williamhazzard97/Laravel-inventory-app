@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Models\Item;
 use App\Http\Controllers\itemController;
 use App\Http\Controllers\userController;
+use App\Http\Controllers\VerificationController;
 
 
 /*
@@ -25,16 +26,16 @@ Route::get('/', function () {
 });
 
 //Load add item form
-Route::get('add', [itemController::class, 'addForm'])->middleware('auth');
+Route::get('add', [itemController::class, 'addForm'])->middleware('auth')->middleware('can:add-items');
 
 //Insert item to database table
 Route::post('saveData', [itemController::class, 'insertItem']);
 
-//Delete item
-Route::get('delete/{id}', [itemController::class, 'delete'])->middleware('auth');
+//Delete items
+Route::get('delete/{id}', [itemController::class, 'delete'])->middleware('auth')->middleware('can:delete-items');
 
 //Edit item
-Route::get('edit/{id}', [itemController::class, 'edit'])->middleware('auth');
+Route::get('edit/{id}', [itemController::class, 'edit'])->middleware('auth')->middleware('can:edit-items');
 Route::put('update/{id}', [itemController::class, 'update'])->middleware('auth');
 
 //Show Register/Create Form
@@ -78,8 +79,18 @@ Route::get('/addStock/{id}', [itemController::class, 'addStock'])->middleware('a
 Route::get('/subStock/{id}', [itemController::class, 'subStock'])->middleware('auth');
 
 //Send Email
-Route::get('/sendEmail', [itemController::class, 'sendEmail']);
+Route::get('/sendEmail', [itemController::class, 'sendEmail'])->middleware('verified');
 
 Auth::routes(['verify' => true]);
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+//Email Verification
+Route::group(['middleware' => ['auth']], function() {
+    /**
+    * Verification Routes
+    */
+    Route::get('/email/verify', [VerificationController::class, 'show'])->name('verification.notice');
+    Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'verify'])->name('verification.verify')->middleware(['signed']);
+    Route::post('/email/resend', [VerificationController::class, 'resend'])->name('verification.resend');
+});
