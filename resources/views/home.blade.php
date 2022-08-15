@@ -33,7 +33,10 @@
     
     <button class="btn btn-primary" type="submit">Send Email</button>
 </form>
-
+<form class="form-inline my-2 my-lg-0" type="get" action="{{ url('/itemApi') }}">
+    
+    <button class="btn btn-primary" type="submit">GET Data</button>
+</form>
 </div>
 
 

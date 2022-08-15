@@ -29,7 +29,7 @@ Route::get('/', function () {
 Route::get('add', [itemController::class, 'addForm'])->middleware('auth')->middleware('can:add-items');
 
 //Insert item to database table
-Route::post('saveData', [itemController::class, 'insertItem']);
+Route::post('saveData', [itemController::class, 'insertItem'])->middleware('can:add-items');
 
 //Delete items
 Route::get('delete/{id}', [itemController::class, 'delete'])->middleware('auth')->middleware('can:delete-items');
@@ -94,3 +94,6 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'verify'])->name('verification.verify')->middleware(['signed']);
     Route::post('/email/resend', [VerificationController::class, 'resend'])->name('verification.resend');
 });
+
+//Generate data
+Route::get('/itemApi',  [itemController::class, 'generateData']);

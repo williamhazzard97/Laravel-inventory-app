@@ -12,6 +12,9 @@ use Illuminate\Support\Facades\Mail;
 use Log;
 use App\Mail\signUp;
 
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Http;
+
 class itemController extends Controller
 {
     /**
@@ -190,5 +193,25 @@ class itemController extends Controller
     public function sendEmail() {
         Mail::to('fake@email.com')->send(new signUp());
         return view('home', ['items' => Item::all()]);
+    }
+
+
+    /**
+     * Call api to generate data for table
+     */
+    public function generateData() {
+        $response = Http::get('http://127.0.0.1:8001/api/items');
+
+        if ($response->status() !== 200) {
+            return 'Failed';
+        }
+
+        $itemName = $response->json('item_name');
+
+        if(empty($itemName)) {
+            return 'ITEM NAME';
+        }
+        return $itemName;
+
     }
 }
