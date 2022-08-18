@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Models\Item;
 use App\Http\Controllers\itemController;
 use App\Http\Controllers\userController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\VerificationController;
 
 
@@ -83,7 +84,7 @@ Route::get('/sendEmail', [itemController::class, 'sendEmail'])->middleware('veri
 
 Auth::routes(['verify' => true]);
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 //Email Verification
 Route::group(['middleware' => ['auth']], function() {

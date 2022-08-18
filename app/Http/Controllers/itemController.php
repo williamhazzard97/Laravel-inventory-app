@@ -28,22 +28,23 @@ class itemController extends Controller
      */
     public function insertItem(Request $request){
         $data = new Item;
+        $data->supplier_id = $request->supplier_id;
         $data->item_name = $request->item_name;
         $data->description = $request->description;
         $data->quantity = $request->quantity;
         $data->category = $request->category; 
         $data->price = $request->price; 
 
-        //Get current sessions user id from the auth() helper
+        //Get current sessions user id from the auth() helper to apply the current user id as the items foreign
         $current_user_id = auth()->user()->id;
         $data->user_id = $current_user_id;
         
         //Upload file with preset file path and specify the storage disk to be used
-        $fileName = time().'_'.$request->file->getClientOriginalName();
-        $filePath = $request->file('file')->storeAs('item_files', $fileName, 'public');
-        $data->file_path = '/' . $filePath;
+        // $fileName = time().'_'.$request->file->getClientOriginalName();
+        // $filePath = $request->file('file')->storeAs('item_files', $fileName, 'public');
+        // $data->file_path = '/' . $filePath;
 
-        Storage::disk('public')->put('testFile2.txt', 'Contents');
+        // Storage::disk('public')->put('testFile2.txt', 'Contents');
 
         $data->save();
 
@@ -212,6 +213,5 @@ class itemController extends Controller
             return 'ITEM NAME';
         }
         return $itemName;
-
     }
 }

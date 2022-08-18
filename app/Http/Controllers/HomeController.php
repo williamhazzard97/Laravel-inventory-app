@@ -30,13 +30,12 @@ class HomeController extends Controller
     {
         //Create admin role and assign to admin user
         
-        $user = User::find('2');
+        $user = User::find('1');
 
         $user->assignRole('Admin');
         $role = Role::findByName('Admin');
 
         $role->givePermissionTo('edit-users');
-
 
         return view('home', ['items' => Item::all()]);
     }

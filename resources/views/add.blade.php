@@ -5,6 +5,9 @@
 
 <form class="form form-control-lg" name="addItemForm" action="{{url('saveData')}}" method="post" id="addItemForm" action="home.blade.php" enctype="multipart/form-data">
     <input type = "hidden" name = "_token" value = "<?php echo csrf_token(); ?>"><input type = "hidden" name = "_token" value = "<?php echo csrf_token(); ?>">
+        <label for="supplier_id">Supplier ID:</label>
+        <input type="text" placeholder="Supplier ID..." name="supplier_id">
+    
         <label for="item_name">Item Name:</label>
         <input type="text" placeholder="Item name..." name="item_name">
 

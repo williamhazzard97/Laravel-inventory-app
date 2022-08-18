@@ -18,9 +18,8 @@ class SupplierFactory extends Factory
     {
         return [
             'supplier_name' => $this->faker->sentence(1),
-            'supplier_address' => $this->faker->paragraph(3),
-            'supplier_city' => $this->faker->sentence(3),
-            
+            'supplier_address' => $this->faker->paragraph(1),
+            'supplier_city' => $this->faker->sentence(1),
         ];
     }
 }
